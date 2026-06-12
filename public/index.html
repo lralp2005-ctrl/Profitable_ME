@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Profitable ME</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- PANTALLA 1 -->
+<div id="introScreen">
+
+    <video autoplay muted loop id="introVideo">
+        <source src="intro.mp4" type="video/mp4">
+    </video>
+
+    <div class="introContent">
+
+        <h1>Profitable ME</h1>
+
+        <h2>Create your first profitable ME</h2>
+
+        <button id="startButton">
+            Start
+        </button>
+
+    </div>
+
+</div>
+
+    <!-- PANTALLA 2 -->
+
+    <div id="createScreen">
+        
+        <video autoplay muted loop id="createVideo">
+          <source src="intro.mp4" type="video/mp4">
+        </video>
+        
+        <h1>Create your Profitable ME</h1>
+         
+        <div class="createContent">
+
+       <input
+    type="text"
+    id="nameInput"
+    placeholder="Who are you?"
+>
+
+<input
+    type="text"
+    id="hairInput"
+    placeholder="What is your hair color?"
+>
+
+<input
+    type="text"
+    id="shirtInput"
+    placeholder="What is your favorite color?"
+>
+
+<button id="createButton">
+    Create Profitable ME
+</button>
+
+
+    </div>
+        
+</div>
+
+    <!-- PANTALLA 3 -->
+
+    <div id="worldScreen">
+
+        <div id="moneyBox">
+            💰 <span id="money">0</span>
+        </div>
+
+        <button id="openCreateButton">
+           Generate more money +
+        </button>
+
+        <div id="world"></div>
+
+    </div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="script.js"></script>
+
+</body>
+
+</html>
