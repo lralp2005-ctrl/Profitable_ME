@@ -43,13 +43,10 @@ function createHouse(x, y) {
 
     house.style.left = x + "px";
     house.style.top = y + "px";
-
     house.style.backgroundColor = color;
 
     house.innerHTML = `
-        <div class="roof"></div>
-        <div class="roofLine"></div>
-        <div class="door"></div>
+        <div class="houseLine"></div>
     `;
 
     world.appendChild(house);
