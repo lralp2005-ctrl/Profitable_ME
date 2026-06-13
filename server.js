@@ -24,10 +24,15 @@ setInterval(() => {
 
         const speed = 2;
 
-        if (player.direction === 0) player.y -= speed;
-        if (player.direction === 1) player.y += speed;
-        if (player.direction === 2) player.x -= speed;
-        if (player.direction === 3) player.x += speed;
+       if (player.direction === 0) player.y -= speed;
+if (player.direction === 1) player.y += speed;
+if (player.direction === 2) player.x -= speed;
+if (player.direction === 3) player.x += speed;
+
+if (player.direction === 0) player.angle = 180;
+if (player.direction === 1) player.angle = 0;
+if (player.direction === 2) player.angle = 90;
+if (player.direction === 3) player.angle = 270;
 
         if (player.x < 0) {
             player.x = 0;
