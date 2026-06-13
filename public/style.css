@@ -261,11 +261,67 @@ button:hover {
     width: 150px;
     height: 120px;
 
-    background: #8b5a2b;
+    border: 4px solid #333;
 
-    border: 4px solid #5c3a1b;
+    border-radius: 8px;
+
+    overflow: visible;
+
+    z-index: 200;
 }
 
+/* TEJADO */
+
+.roof {
+
+    position: absolute;
+
+    top: -50px;
+    left: -10px;
+
+    width: 170px;
+    height: 60px;
+
+    background: #8b2e2e;
+
+    clip-path: polygon(
+        50% 0%,
+        100% 100%,
+        0% 100%
+    );
+}
+
+/* LINEA CENTRAL DEL TEJADO */
+
+.roofLine {
+
+    position: absolute;
+
+    top: -48px;
+    left: 73px;
+
+    width: 4px;
+    height: 50px;
+
+    background: #5a1d1d;
+}
+
+/* PUERTA */
+
+.door {
+
+    position: absolute;
+
+    bottom: 0;
+    left: 55px;
+
+    width: 40px;
+    height: 65px;
+
+    background: #5c3a1b;
+
+    border: 2px solid #222;
+}
 /* -------------------- */
 /* AVATAR */
 /* -------------------- */
