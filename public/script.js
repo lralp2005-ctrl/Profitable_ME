@@ -23,6 +23,7 @@ let money = 0;
 
 const width = window.innerWidth;
 const height = window.innerHeight;
+const houses = [];
 
 function createHouse(x, y) {
 
@@ -50,12 +51,20 @@ function createHouse(x, y) {
     `;
 
     world.appendChild(house);
+    
+    houses.push({
+    x,
+    y,
+    width: 150,
+    height: 120
+});
+    
 }
 
-for (let i = 1; i <= 6; i++) {
-    createHouse((width / 7) * i - 75, height / 4 - 60);
-    createHouse((width / 7) * i - 75, height / 4 * 2 - 60);
-    createHouse((width / 7) * i - 75, height / 4 * 3 - 60);
+for (let i = 1; i <= 4; i++) {
+    createHouse((width / 5) * i - 75, height / 4 - 60);
+    createHouse((width / 5) * i - 75, height / 4 * 2 - 60);
+    createHouse((width / 5) * i - 75, height / 4 * 3 - 60);
 }
 
 /* -------------------- */
