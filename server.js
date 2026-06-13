@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+
 const http = require("http").createServer(app);
 const io = require("socket.io")(http);
 
@@ -9,44 +10,37 @@ let players = {};
 
 io.on("connection", (socket) => {
 
-  socket.on("createAvatar", (data) => {
+    console.log("Jugador conectado");
 
-    const avatarId =
-        Date.now().toString() +
-        Math.floor(Math.random() * 10000);
+    socket.on("createAvatar", (data) => {
 
-    players[avatarId] = {
+        const avatarId =
+            Date.now().toString() +
+            Math.floor(Math.random() * 10000);
 
-        id: avatarId,
+        players[avatarId] = {
 
-        name: data.name,
+            id: avatarId,
 
-        hair: data.hair,
+            name: data.name,
 
-        shirt: data.shirt,
+            hair: data.hair,
 
-        x: Math.random() * 800,
+            shirt: data.shirt,
 
-        y: Math.random() * 500
-    };
+            x: Math.random() * 800,
 
-    io.emit("playersUpdate", players);
-});
-/*
-    socket.on("move", (pos) => {
-        if (!players[socket.id]) return;
-
-        players[socket.id].x = pos.x;
-        players[socket.id].y = pos.y;
-        players[socket.id].angle = pos.angle;
-        players[socket.id].direction = pos.direction;
+            y: Math.random() * 500
+        };
 
         io.emit("playersUpdate", players);
     });
-*/
-  socket.on("disconnect", () => {
 
-    io.emit("playersUpdate", players);
+    socket.on("disconnect", () => {
+
+        io.emit("playersUpdate", players);
+
+    });
 
 });
 
