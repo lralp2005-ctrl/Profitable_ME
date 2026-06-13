@@ -96,44 +96,6 @@ createButton.addEventListener("click", () => {
 });
 
 /* -------------------- */
-/* MOVIMIENTO AUTOMÁTICO */
-/* -------------------- */
-
-let x = 200;
-let y = 200;
-let angle = 0;
-let direction = 0;
-let timer = 0;
-
-function loop() {
-
-    const speed = 1;
-
-    timer++;
-
-    if (timer > 120) {
-        direction = Math.floor(Math.random() * 4);
-        timer = 0;
-    }
-
-    if (direction === 0) { y -= speed; angle = 180; }
-    if (direction === 1) { y += speed; angle = 0; }
-    if (direction === 2) { x -= speed; angle = 90; }
-    if (direction === 3) { x += speed; angle = 270; }
-
-    if (x < 0) { x = 0; direction = 3; }
-    if (x > world.clientWidth - 80) { x = world.clientWidth - 80; direction = 2; }
-    if (y < 0) { y = 0; direction = 1; }
-    if (y > world.clientHeight - 80) { y = world.clientHeight - 80; direction = 0; }
-
-    socket.emit("move", { x, y, angle, direction });
-
-    requestAnimationFrame(loop);
-}
-
-loop();
-
-/* -------------------- */
 /* RENDER MULTIPLAYER */
 /* -------------------- */
 
