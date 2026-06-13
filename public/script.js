@@ -25,10 +25,33 @@ const width = window.innerWidth;
 const height = window.innerHeight;
 
 function createHouse(x, y) {
+
+    const colors = [
+        "#d96c6c",
+        "#6c8cd9",
+        "#6cd98f",
+        "#d9c16c",
+        "#c06cd9"
+    ];
+
+    const color =
+        colors[Math.floor(Math.random() * colors.length)];
+
     const house = document.createElement("div");
+
     house.classList.add("house");
+
     house.style.left = x + "px";
     house.style.top = y + "px";
+
+    house.style.backgroundColor = color;
+
+    house.innerHTML = `
+        <div class="roof"></div>
+        <div class="roofLine"></div>
+        <div class="door"></div>
+    `;
+
     world.appendChild(house);
 }
 
