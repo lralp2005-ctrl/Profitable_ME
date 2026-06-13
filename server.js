@@ -9,20 +9,30 @@ let players = {};
 
 io.on("connection", (socket) => {
 
-    socket.on("createAvatar", (data) => {
-        players[socket.id] = {
-            name: data.name,
-            hair: data.hair,
-            shirt: data.shirt,
-            x: 200,
-            y: 200,
-            angle: 0,
-            direction: Math.floor(Math.random() * 4)
-        };
+  socket.on("createAvatar", (data) => {
 
-        io.emit("playersUpdate", players);
-    });
+    const avatarId =
+        Date.now().toString() +
+        Math.floor(Math.random() * 10000);
 
+    players[avatarId] = {
+
+        id: avatarId,
+
+        name: data.name,
+
+        hair: data.hair,
+
+        shirt: data.shirt,
+
+        x: Math.random() * 800,
+
+        y: Math.random() * 500
+    };
+
+    io.emit("playersUpdate", players);
+});
+/*
     socket.on("move", (pos) => {
         if (!players[socket.id]) return;
 
@@ -33,11 +43,11 @@ io.on("connection", (socket) => {
 
         io.emit("playersUpdate", players);
     });
+*/
+  socket.on("disconnect", () => {
 
-    socket.on("disconnect", () => {
-        delete players[socket.id];
-        io.emit("playersUpdate", players);
-    });
+    io.emit("playersUpdate", players);
+
 });
 
 const PORT = process.env.PORT || 3001;
