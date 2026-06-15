@@ -51,9 +51,29 @@ socket.on("initWorld", (data) => {
 /* NAVEGACIÓN */
 /* -------------------- */
 
-startButton.addEventListener("click", () => {
-    introScreen.style.display = "none";
-    createScreen.style.display = "flex";
+createButton.addEventListener("click", () => {
+
+    const name = document.getElementById("nameInput").value.trim();
+    const hairColor = document.getElementById("hairInput").value.trim();
+    const shirtColor = document.getElementById("shirtInput").value.trim();
+
+    // VALIDACIÓN (OBLIGA A RELLENAR TODO)
+    if (!name || !hairColor || !shirtColor) {
+        alert("Please answer all questions before creating your avatar.");
+        return;
+    }
+
+    socket.emit("createAvatar", {
+        name,
+        hair: hairColor,
+        shirt: shirtColor
+    });
+
+    money += 10;
+    moneyText.textContent = money;
+
+    createScreen.style.display = "none";
+    worldScreen.style.display = "block";
 });
 
 openCreateButton.addEventListener("click", () => {
