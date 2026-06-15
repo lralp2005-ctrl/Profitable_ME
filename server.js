@@ -8,6 +8,51 @@ app.use(express.static("public"));
 
 let players = {};
 
+const houses = [];
+
+for (let i = 1; i <= 4; i++) {
+
+    houses.push({
+        x: (1400 / 5) * i - 75,
+        y: 800 / 4 - 60,
+        width: 160,
+        height: 120
+    });
+
+    houses.push({
+        x: (1400 / 5) * i - 75,
+        y: 800 / 4 * 2 - 60,
+        width: 160,
+        height: 120
+    });
+
+    houses.push({
+        x: (1400 / 5) * i - 75,
+        y: 800 / 4 * 3 - 60,
+        width: 160,
+        height: 120
+    });
+}
+
+function collidesWithHouse(x, y) {
+
+    const avatarSize = 40;
+
+    for (const house of houses) {
+
+        if (
+            x < house.x + house.width &&
+            x + avatarSize > house.x &&
+            y < house.y + house.height &&
+            y + avatarSize > house.y
+        ) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
 setInterval(() => {
 
     for (let id in players) {
@@ -24,10 +69,24 @@ setInterval(() => {
 
         const speed = 2;
 
-       if (player.direction === 0) player.y -= speed;
-if (player.direction === 1) player.y += speed;
-if (player.direction === 2) player.x -= speed;
-if (player.direction === 3) player.x += speed;
+      let newX = player.x;
+let newY = player.y;
+
+if (player.direction === 0) newY -= speed;
+if (player.direction === 1) newY += speed;
+if (player.direction === 2) newX -= speed;
+if (player.direction === 3) newX += speed;
+
+if (collidesWithHouse(newX, newY)) {
+
+    player.direction = Math.floor(Math.random() * 4);
+
+} else {
+
+    player.x = newX;
+    player.y = newY;
+
+}
 
 if (player.direction === 0) player.angle = 180;
 if (player.direction === 1) player.angle = 0;
