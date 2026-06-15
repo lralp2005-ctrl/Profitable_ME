@@ -90,13 +90,6 @@ createButton.addEventListener("click", () => {
     worldScreen.style.display = "block";
 });
 
-    money += 10;
-    moneyText.textContent = money;
-
-    createScreen.style.display = "none";
-    worldScreen.style.display = "block";
-});
-
 /* -------------------- */
 /* RENDER MULTIPLAYER */
 /* -------------------- */
