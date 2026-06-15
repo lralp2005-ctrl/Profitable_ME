@@ -27,16 +27,16 @@ const houses = [];
 
 function createHouse(x, y) {
 
-    const colors = [
-        "#d96c6c",
-        "#6c8cd9",
-        "#6cd98f",
-        "#d9c16c",
-        "#c06cd9"
+    const roofs = [
+        "images/roof-brown.png",
+        "images/roof-yellow.png",
+        "images/roof-blue.png",
+        "images/roof-red.png",
+        "images/roof-purple.png"
     ];
 
-    const color =
-        colors[Math.floor(Math.random() * colors.length)];
+    const randomRoof =
+        roofs[Math.floor(Math.random() * roofs.length)];
 
     const house = document.createElement("div");
 
@@ -44,21 +44,18 @@ function createHouse(x, y) {
 
     house.style.left = x + "px";
     house.style.top = y + "px";
-    house.style.backgroundColor = color;
 
-    house.innerHTML = `
-        <div class="houseLine"></div>
-    `;
+    house.style.backgroundImage =
+        `url("${randomRoof}")`;
 
     world.appendChild(house);
-    
+
     houses.push({
-    x,
-    y,
-    width: 150,
-    height: 120
-});
-    
+        x,
+        y,
+        width: 180,
+        height: 180
+    });
 }
 
 for (let i = 1; i <= 4; i++) {
