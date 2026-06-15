@@ -161,10 +161,7 @@ io.on("connection", (socket) => {
             Date.now().toString() +
             Math.floor(Math.random() * 10000);
 
-        const spawn = {
-            x: Math.random() * 800,
-            y: Math.random() * 500
-        };
+        const spawn = getSafeSpawn();
 
         players[avatarId] = {
             id: avatarId,
