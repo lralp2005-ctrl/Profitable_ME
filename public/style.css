@@ -326,16 +326,15 @@ button:hover {
 /* CAMISETA + BRAZOS */
 
 .arms {
-
     position: absolute;
 
-    top: 15px;
-    left: -3px;
+    top: 18px;
+    left: 5px;
 
-    width: 55px;
-    height: 25px;
+    width: 30px;
+    height: 12px;
 
-    border-radius: 15px;
+    border-radius: 10px;
 
     border: 2px solid #222;
 }
@@ -343,14 +342,13 @@ button:hover {
 /* CABEZA */
 
 .head {
-
     position: absolute;
 
-    top: 8px;
-    left: 10px;
+    top: 6px;
+    left: 7px;
 
-    width: 35px;
-    height: 35px;
+    width: 24px;
+    height: 24px;
 
     border-radius: 50%;
 
@@ -363,21 +361,18 @@ button:hover {
 
 /* PELO */
 
-.head {
-
+.hair {
     position: absolute;
 
-    top: 8px;
-    left: 10px;
+    top: 3px;
+    left: 7px;
 
-    width: 35px;
-    height: 35px;
+    width: 24px;
+    height: 10px;
 
-    border-radius: 50%;
-
-    background: #f5d6b4;
+    border-radius: 15px 15px 0 0;
 
     border: 2px solid #222;
 
-    z-index: 2;
+    z-index: 3;
 }
