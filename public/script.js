@@ -75,7 +75,7 @@ createButton.addEventListener("click", () => {
 
     // VALIDACIÓN (OBLIGA A RELLENAR TODO)
     if (!name || !hairColor || !shirtColor || !age || !job) {
-    alert("Please answer all questions before creating your avatar.");
+    alert("Please answer all questions before creating your Profitable ME.");
     return;
 }
 
