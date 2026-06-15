@@ -20,6 +20,8 @@ let money = 0;
 // CASAS (VIENEN DEL SERVIDOR)
 socket.on("initWorld", (data) => {
 
+    console.log("CASAS:", data.houses);
+
     for (const house of data.houses) {
 
         const houseDiv = document.createElement("div");
@@ -28,11 +30,22 @@ socket.on("initWorld", (data) => {
         houseDiv.style.left = house.x + "px";
         houseDiv.style.top = house.y + "px";
 
+        const roofs = [
+            "images/roof-brown.png",
+            "images/roof-yellow.png",
+            "images/roof-blue.png",
+            "images/roof-red.png",
+            "images/roof-purple.png"
+        ];
+
+        const randomRoof =
+            roofs[Math.floor(Math.random() * roofs.length)];
+
+        houseDiv.style.backgroundImage = `url("${randomRoof}")`;
+
         world.appendChild(houseDiv);
     }
-
 });
-
 
 /* -------------------- */
 /* NAVEGACIÓN */
