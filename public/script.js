@@ -70,18 +70,22 @@ createButton.addEventListener("click", () => {
     const name = document.getElementById("nameInput").value.trim();
     const hairColor = document.getElementById("hairInput").value.trim();
     const shirtColor = document.getElementById("shirtInput").value.trim();
+    const age = document.getElementById("ageInput").value.trim();
+    const job = document.getElementById("jobInput").value.trim();
 
     // VALIDACIÓN (OBLIGA A RELLENAR TODO)
-    if (!name || !hairColor || !shirtColor) {
-        alert("Please answer all questions before creating your avatar.");
-        return;
-    }
+    if (!name || !hairColor || !shirtColor || !age || !job) {
+    alert("Please answer all questions before creating your avatar.");
+    return;
+}
 
     socket.emit("createAvatar", {
-        name,
-        hair: hairColor,
-        shirt: shirtColor
-    });
+    name,
+    hair: hairColor,
+    shirt: shirtColor,
+    age,
+    job,
+});
 
     money += 10;
     moneyText.textContent = money;
