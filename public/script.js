@@ -21,8 +21,8 @@ let money = 0;
 /* CASAS */
 /* -------------------- */
 
-const width = window.innerWidth;
-const height = window.innerHeight;
+const width = 1400;
+const height = 800;
 const houses = [];
 
 function createHouse(x, y) {
