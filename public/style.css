@@ -181,14 +181,10 @@ button:hover {
 /* MUNDO */
 /* -------------------- */
 
-#worldScreen {
-
-    display: none;
-
-    width: 100vw;
-    height: 100vh;
-
-    position: relative;
+#worldScreen{
+    display:flex;
+    justify-content:center;
+    align-items:center;
     overflow:auto;
 }
 
