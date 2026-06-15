@@ -364,3 +364,25 @@ button:hover {
 
     z-index: 3;
 }
+
+@media (max-width: 768px){
+
+    .house{
+        width:80px;
+        height:60px;
+    }
+
+    .avatar{
+        transform: scale(0.7);
+    }
+
+    #moneyBox{
+        font-size:18px;
+        padding:10px;
+    }
+
+    #openCreateButton{
+        width:160px;
+        font-size:12px;
+    }
+}
