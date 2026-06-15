@@ -189,23 +189,23 @@ button:hover {
     height: 100vh;
 
     position: relative;
+    overflow:auto;
 }
 
 #world {
 
-    width: 100%;
-    height: 100%;
+    width: 1400px;
+    height: 800px;
 
     position: relative;
 
     overflow: hidden;
 
     background-image: url("images/grass.png");
-
     background-repeat: repeat;
-
     background-size: 300px;
 }
+
 
 /* -------------------- */
 /* DINERO */
