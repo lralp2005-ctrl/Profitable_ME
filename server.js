@@ -36,7 +36,7 @@ for (let i = 1; i <= 4; i++) {
 
 function collidesWithHouse(x, y) {
 
-    const avatarSize = 40;
+    const avatarSize = 30;
 
     for (const house of houses) {
 
