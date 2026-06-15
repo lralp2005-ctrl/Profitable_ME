@@ -51,6 +51,20 @@ socket.on("initWorld", (data) => {
 /* NAVEGACIÓN */
 /* -------------------- */
 
+startButton.addEventListener("click", () => { 
+    introScreen.style.display = "none"; 
+    createScreen.style.display = "flex"; 
+});
+
+openCreateButton.addEventListener("click", () => {
+    createScreen.style.display = "flex";
+    worldScreen.style.display = "none";
+});
+
+/* -------------------- */
+/* CREAR AVATAR */
+/* -------------------- */
+
 createButton.addEventListener("click", () => {
 
     const name = document.getElementById("nameInput").value.trim();
@@ -75,27 +89,6 @@ createButton.addEventListener("click", () => {
     createScreen.style.display = "none";
     worldScreen.style.display = "block";
 });
-
-openCreateButton.addEventListener("click", () => {
-    createScreen.style.display = "flex";
-    worldScreen.style.display = "none";
-});
-
-/* -------------------- */
-/* CREAR AVATAR */
-/* -------------------- */
-
-createButton.addEventListener("click", () => {
-
-    const name = document.getElementById("nameInput").value || "Player";
-    const hairColor = document.getElementById("hairInput").value || "brown";
-    const shirtColor = document.getElementById("shirtInput").value || "blue";
-
-    socket.emit("createAvatar", {
-        name,
-        hair: hairColor,
-        shirt: shirtColor
-    });
 
     money += 10;
     moneyText.textContent = money;
