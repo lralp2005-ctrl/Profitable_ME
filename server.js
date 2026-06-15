@@ -150,33 +150,41 @@ io.on("connection", (socket) => {
 
     console.log("Jugador conectado");
 
+    // ENVIAR CASAS AL CLIENTE
+    socket.emit("initWorld", {
+        houses
+    });
+
     socket.on("createAvatar", (data) => {
 
         const avatarId =
             Date.now().toString() +
             Math.floor(Math.random() * 10000);
 
-       const spawn = getSafeSpawn();
+        const spawn = {
+            x: Math.random() * 800,
+            y: Math.random() * 500
+        };
 
-players[avatarId] = {
-    id: avatarId,
-    name: data.name,
-    hair: data.hair,
-    shirt: data.shirt,
-    x: spawn.x,
-    y: spawn.y,
-    direction: Math.floor(Math.random() * 4)
-};
+        players[avatarId] = {
+            id: avatarId,
+            name: data.name,
+            hair: data.hair,
+            shirt: data.shirt,
+            x: spawn.x,
+            y: spawn.y,
+            direction: Math.floor(Math.random() * 4)
+        };
+
         io.emit("playersUpdate", players);
     });
 
     socket.on("disconnect", () => {
-
-        io.emit("playersUpdate", players);
-
+        console.log("Jugador desconectado");
     });
 
 });
+
 
 const PORT = process.env.PORT || 3001;
 
