@@ -53,6 +53,34 @@ function collidesWithHouse(x, y) {
     return false;
 }
 
+function getSafeSpawn() {
+
+    while (true) {
+
+        const x = Math.random() * 800;
+        const y = Math.random() * 500;
+
+        let collision = false;
+
+        for (const house of houses) {
+
+            if (
+                x < house.x + house.width &&
+                x + 40 > house.x &&
+                y < house.y + house.height &&
+                y + 40 > house.y
+            ) {
+                collision = true;
+                break;
+            }
+        }
+
+        if (!collision) {
+            return { x, y };
+        }
+    }
+}
+
 setInterval(() => {
 
     for (let id in players) {
@@ -128,16 +156,17 @@ io.on("connection", (socket) => {
             Date.now().toString() +
             Math.floor(Math.random() * 10000);
 
-       players[avatarId] = {
+       const spawn = getSafeSpawn();
+
+players[avatarId] = {
     id: avatarId,
     name: data.name,
     hair: data.hair,
     shirt: data.shirt,
-    x: Math.random() * 800,
-    y: Math.random() * 500,
+    x: spawn.x,
+    y: spawn.y,
     direction: Math.floor(Math.random() * 4)
 };
-
         io.emit("playersUpdate", players);
     });
 
