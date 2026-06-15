@@ -17,72 +17,22 @@ const moneyText = document.getElementById("money");
 
 let money = 0;
 
-/* -------------------- */
-/* CASAS */
-/* -------------------- */
+// CASAS (VIENEN DEL SERVIDOR)
+socket.on("initWorld", (data) => {
 
-const width = 1400;
-const height = 800;
-const houses = [];
+    for (const house of data.houses) {
 
-function createHouse(x, y) {
+        const houseDiv = document.createElement("div");
+        houseDiv.classList.add("house");
 
-    const roofs = [
-        "images/roof-brown.png",
-        "images/roof-yellow.png",
-        "images/roof-blue.png",
-        "images/roof-red.png",
-        "images/roof-purple.png"
-    ];
+        houseDiv.style.left = house.x + "px";
+        houseDiv.style.top = house.y + "px";
 
-    const randomRoof =
-        roofs[Math.floor(Math.random() * roofs.length)];
-
-    const house = document.createElement("div");
-
-    house.classList.add("house");
-
-    house.style.left = x + "px";
-    house.style.top = y + "px";
-
-    house.style.backgroundImage =
-        `url("${randomRoof}")`;
-
-    world.appendChild(house);
-
-    houses.push({
-        x,
-        y,
-        width: 180,
-        height: 180
-    });
-}
-
-const isMobile = window.innerWidth < 768;
-
-if(isMobile){
-
-    for(let row = 0; row < 4; row++){
-
-        for(let col = 0; col < 2; col++){
-
-            createHouse(
-                40 + col * 140,
-                80 + row * 120
-            );
-        }
+        world.appendChild(houseDiv);
     }
 
-}else{
+});
 
-    for (let i = 1; i <= 4; i++) {
-
-        createHouse((width / 5) * i - 75, height / 4 - 60);
-        createHouse((width / 5) * i - 75, height / 4 * 2 - 60);
-        createHouse((width / 5) * i - 75, height / 4 * 3 - 60);
-    }
-
-}
 
 /* -------------------- */
 /* NAVEGACIÓN */
