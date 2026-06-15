@@ -58,10 +58,30 @@ function createHouse(x, y) {
     });
 }
 
-for (let i = 1; i <= 4; i++) {
-    createHouse((width / 5) * i - 75, height / 4 - 60);
-    createHouse((width / 5) * i - 75, height / 4 * 2 - 60);
-    createHouse((width / 5) * i - 75, height / 4 * 3 - 60);
+const isMobile = window.innerWidth < 768;
+
+if(isMobile){
+
+    for(let row = 0; row < 4; row++){
+
+        for(let col = 0; col < 2; col++){
+
+            createHouse(
+                40 + col * 140,
+                80 + row * 120
+            );
+        }
+    }
+
+}else{
+
+    for (let i = 1; i <= 4; i++) {
+
+        createHouse((width / 5) * i - 75, height / 4 - 60);
+        createHouse((width / 5) * i - 75, height / 4 * 2 - 60);
+        createHouse((width / 5) * i - 75, height / 4 * 3 - 60);
+    }
+
 }
 
 /* -------------------- */
