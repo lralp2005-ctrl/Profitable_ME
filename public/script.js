@@ -86,6 +86,11 @@ createButton.addEventListener("click", () => {
     age,
     job,
 });
+    document.getElementById("nameInput").value = "";
+document.getElementById("hairInput").value = "";
+document.getElementById("shirtInput").value = "";
+    document.getElementById("ageInput").value = "";
+document.getElementById("jobInput").value = "";
 
     money += 10;
     moneyText.textContent = money;
