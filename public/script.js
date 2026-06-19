@@ -44,6 +44,7 @@ socket.on("initWorld", (data) => {
         div.style.top    = (house.y * 100) + "%";
         div.style.width  = (house.w * 100) + "%";
         div.style.height = (house.h * 100) + "%";
+        div.style.backgroundSize = "contain";  // imagen completa dentro del div
         div.style.backgroundImage = `url("${roofs[Math.floor(Math.random() * roofs.length)]}")`;
         world.appendChild(div);
     }
