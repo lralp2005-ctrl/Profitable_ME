@@ -1,204 +1,151 @@
-body {
+/* -------------------- */
+/* RESET */
+/* -------------------- */
+html, body {
     margin: 0;
+    padding: 0;
+    overflow: hidden;
     font-family: Arial, sans-serif;
     background-color: #111;
     color: white;
+    -webkit-tap-highlight-color: transparent;
 }
 
-/* -------------------- */
-/* PANTALLA INICIAL */
-/* -------------------- */
-
-#introScreen {
-
-    position: relative;
-
+/* Todas las pantallas ocupan exactamente el viewport */
+#introScreen,
+#createScreen,
+#worldScreen {
+    position: fixed;
+    top: 0; left: 0;
     width: 100vw;
     height: 100vh;
-
-    overflow: hidden;
-
-    display: flex;
-
-    justify-content: center;
-
-    align-items: center;
-
-    text-align: center;
 }
 
-/* VIDEO */
+/* -------------------- */
+/* PANTALLA 1 – INTRO */
+/* -------------------- */
+#introScreen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    overflow: hidden;
+}
 
 #introVideo {
-
     position: absolute;
-
-    top: 0;
-    left: 0;
-
-    width: 100%;
-    height: 100%;
-
+    top: 0; left: 0;
+    width: 100%; height: 100%;
     object-fit: cover;
-
     z-index: 0;
 }
-
-/* CONTENIDO */
 
 .introContent {
-
     position: relative;
-
     z-index: 10;
-
     display: flex;
-
     flex-direction: column;
-
     align-items: center;
-
     gap: 20px;
+    padding: 20px;
 }
 
-/* TITULO */
+.introContent h1 { font-size: clamp(32px, 8vw, 60px); margin: 0; }
+.introContent h2 { font-size: clamp(16px, 4vw, 24px); margin: 0; }
 
-.introContent h1 {
-
-    font-size: 60px;
-
-    margin: 0;
-
-    color: white;
-}
-
-/* SUBTITULO */
-
-.introContent h2 {
-
-    margin: 0;
-
-    color: white;
-}
-
-/* BOTON */
-
-#startButton {
-
-    padding: 15px 40px;
-
-    font-size: 20px;
-
-    border: none;
-
-    border-radius: 12px;
-
-    cursor: pointer;
-}
-
+/* -------------------- */
+/* PANTALLA 2 – CREAR */
+/* -------------------- */
 #createScreen {
-
     display: none;
-
-    position: relative;
-
-    height: 100vh;
-
     flex-direction: column;
-
     justify-content: center;
     align-items: center;
-
     gap: 15px;
-
-    overflow: hidden;
+    /* scroll por si el teclado virtual empuja el contenido */
+    overflow-y: auto;
+    overflow-x: hidden;
 }
- #createScreen input {
 
-    width: 350px;      
-
-    height: 40px;    
-
-    padding: 15px;
-
-    font-size: 24px;  
-
-    border-radius: 12px;
-}
 #createVideo {
-
     position: absolute;
-
-    top: 0;
-    left: 0;
-
-    width: 100%;
-    height: 100%;
-
+    top: 0; left: 0;
+    width: 100%; height: 100%;
     object-fit: cover;
-
     z-index: 0;
+}
+
+#createScreen h1 {
+    position: relative;
+    z-index: 10;
+    font-size: clamp(20px, 5vw, 36px);
+    margin: 0;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.8);
 }
 
 .createContent {
-
     position: relative;
-
     z-index: 10;
-
     display: flex;
-
     flex-direction: column;
-
     align-items: center;
-
-    gap: 20px;
+    gap: 16px;
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
 }
 
+#createScreen input {
+    width: 100%;
+    max-width: 420px;
+    height: 52px;
+    padding: 0 16px;
+    /* mínimo 16px: por debajo iOS hace zoom automático al enfocar */
+    font-size: clamp(16px, 4vw, 22px);
+    border-radius: 12px;
+    border: none;
+    box-sizing: border-box;
+    background: rgba(255,255,255,0.92);
+    color: #111;
+}
 
 /* -------------------- */
 /* BOTONES */
 /* -------------------- */
-
 button {
-
     padding: 12px 20px;
-
     border: none;
     border-radius: 10px;
-
     cursor: pointer;
-
-    font-size: 16px;
+    font-size: clamp(14px, 3.5vw, 18px);
+    min-height: 44px; /* mínimo táctil recomendado por Apple/Google */
 }
 
-button:hover {
+button:hover  { transform: scale(1.05); }
+button:active { transform: scale(0.97); }
 
-    transform: scale(1.05);
-}
+#startButton { padding: 15px 40px; font-size: clamp(18px, 4vw, 22px); }
 
 /* -------------------- */
 /* MUNDO */
 /* -------------------- */
-
-#worldScreen{
-    width: 100vw;
-    height: 100vh;
+#worldScreen {
+    display: none;
     overflow: hidden;
-    position: relative;
 }
 
+/*
+  #world tiene siempre las dimensiones del servidor (1400×800).
+  En escritorio se centra igual que antes.
+  En móvil se escala con transform para caber en pantalla (ver script.js).
+*/
 #world {
-    width: 1400px;
-    height: 800px;
-
+    width: 100%;
+    height: 100%;
     position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-
+    top: 0;
+    left: 0;
     overflow: hidden;
-
     background-image: url("images/grass.png");
     background-repeat: repeat;
     background-size: 300px;
@@ -207,80 +154,51 @@ button:hover {
 /* -------------------- */
 /* DINERO */
 /* -------------------- */
-
 #moneyBox {
-
     position: fixed;
-
-    top: 20px;
-    right: 20px;
-
+    top: 16px; right: 16px;
     z-index: 999;
-
     background: #222;
-
     border: 2px solid gold;
-
-    padding: 15px;
-
+    padding: 12px 16px;
     border-radius: 10px;
-
     color: gold;
-
-    font-size: 24px;
+    font-size: clamp(16px, 4vw, 24px);
 }
 
 /* -------------------- */
-/* BOTON + */
+/* BOTON CREAR MÁS */
 /* -------------------- */
-
 #openCreateButton {
-
     position: fixed;
-
-    bottom: 20px;
-    left: 20px;
-
+    bottom: 20px; left: 20px;
     width: 280px;
     height: 70px;
-
     border-radius: 10px;
-
-    font-size: 15px;
-
+    font-size: clamp(12px, 3vw, 15px);
     z-index: 999;
 }
 
 /* -------------------- */
 /* CASAS */
 /* -------------------- */
-
 .house {
-
     position: absolute;
-
     width: 160px;
     height: 120px;
-
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-
     z-index: 1;
 }
-
 
 /* -------------------- */
 /* AVATAR */
 /* -------------------- */
-
 .avatar {
-
     position: absolute;
-
     width: 40px;
     height: 40px;
-
     z-index: 100;
 }
 
@@ -291,116 +209,51 @@ button:hover {
     transform-origin: center;
 }
 
-/* NOMBRE */
-
 .name {
-
     position: absolute;
-
     top: -30px;
-
     width: 100%;
-
     text-align: center;
-
     color: white;
-
-    font-size: 15px;
+    font-size: 13px;
+    white-space: nowrap;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.9);
 }
-
-/* CAMISETA + BRAZOS */
 
 .arms {
     position: absolute;
-
-    top: 18px;
-    left: 0px;
-
-    width: 40px;
-    height: 18px;
-
+    top: 18px; left: 0px;
+    width: 40px; height: 18px;
     border-radius: 10px;
-
     border: 2px solid #222;
 }
-
-/* CABEZA */
 
 .head {
     position: absolute;
-
-    top: 12px;
-    left: 8px;
-
-    width: 24px;
-    height: 24px;
-
+    top: 12px; left: 8px;
+    width: 24px; height: 24px;
     border-radius: 50%;
-
     background: #f5d6b4;
-
     border: 2px solid #222;
-
     z-index: 2;
 }
 
-/* PELO */
-
 .hair {
     position: absolute;
-
-    top: 12px;
-    left: 8px;
-
-    width: 24px;
-    height: 18px;
-
+    top: 12px; left: 8px;
+    width: 24px; height: 18px;
     border-radius: 15px 15px 0 0;
-
     border: 2px solid #222;
-
     z-index: 3;
 }
 
-@media (max-width: 768px){
-
-    .house{
-        width:80px;
-        height:60px;
+/* -------------------- */
+/* RESPONSIVE MÓVIL */
+/* -------------------- */
+@media (max-width: 768px) {
+    #openCreateButton {
+        width: 160px;
+        font-size: 12px;
+        height: 56px;
     }
-
-    .avatar{
-        transform: scale(0.7);
-    }
-
-    #moneyBox{
-        font-size:18px;
-        padding:10px;
-    }
-
-    #openCreateButton{
-        width:160px;
-        font-size:12px;
-    }
-}
-
-html, body {
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-}
-
-#introScreen,
-#createScreen,
-#worldScreen {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-}
-
-#worldScreen {
-    display: none;
-    overflow: hidden;
 }
